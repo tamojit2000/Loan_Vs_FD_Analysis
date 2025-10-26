@@ -26,15 +26,15 @@ def calculate_emi_and_fd(Loan_Amount, Loan_Rate, FD_Rate, Loan_Tenure_Months):
 
 if __name__ == "__main__":
 
-    Loan_Amount = 2_18_600
-    Loan_Rate = 9.5
+    Loan_Amount = 1_78_600
+    Loan_Rate = 9.2
     FD_Rate = 6.6
-    Max_Loan_Tenure_Months = 2
+    Max_Loan_Tenure_Months = 48
 
     Matrix = list()
 
 
-    Loan_Tenure_Months = [i for i in range(6, Max_Loan_Tenure_Months*12+1, 6)]
+    Loan_Tenure_Months = [i for i in range(6, Max_Loan_Tenure_Months+1, 6)]
 
     with ThreadPoolExecutor(max_workers=len(Loan_Tenure_Months)) as executor:
         futures=[executor.submit(calculate_emi_and_fd, Loan_Amount, Loan_Rate, FD_Rate, months) for months in Loan_Tenure_Months]
